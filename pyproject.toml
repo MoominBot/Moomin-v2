@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "moomin"
+version = "2"
+description = "🤖 Powerful Discord Bot built for Nepalese community"
+authors = ["Nishant Sapkota <snishant306@gmail.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+hikari = "^2.0.0.dev116"
+asyncpg = "^0.27.0"
+aiofiles = "^22.1.0"
+hikari-lightbulb = "^2.3.1"
+python-dotenv = "^0.21.1"
+aioredis = "^2.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
