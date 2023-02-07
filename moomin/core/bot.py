@@ -19,6 +19,7 @@ class Moomin(lightbulb.BotApp):
             ignore_bots=True,
             intents=hikari.Intents.ALL,
             owner_ids=Config.OWNER_IDS,
+            banner="moomin.assets",
         )
         self.db = DatabaseManager(Config.PSQL_DSN)
         self.redis_cache = aioredis.Redis()
