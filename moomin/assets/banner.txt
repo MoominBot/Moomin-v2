@@ -1,0 +1,21 @@
+
+                /|  /|
+                J(|_J(|
+               /    _  `_
+              J    ' _ ' \
+              F     (.) (.)--._
+             /                 `. ${reset}${bold_white}interpreter:   ${thin_white}${python_implementation} ${python_version}${reset}
+            J                   | ${reset}${bold_white}running on:    ${thin_white}${system_description}${reset}
+            F       ._         .' ${reset}${bold_white}support:       ${thin_white}${hikari_discord_invite}${reset}
+           J          `-.____.'
+           F           \
+          J             \.
+          |   .  `.      \\
+ ,,,      |    `.  `.     L`
+\VVV'     |      `.  `    |`
+ \W|      J        ```    |
+  `.    .' \              F
+    `--'    )    ___..-   (  .-
+           /   .'     `.   `' /
+           `.  \        `.   /
+             `._|         `-'   TJ/mh/TVK
