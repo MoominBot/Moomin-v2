@@ -29,7 +29,7 @@ class Moomin(lightbulb.BotApp):
         self.event_manager.subscribe(hikari.StartingEvent, self.on_starting)
         self.event_manager.subscribe(hikari.StartedEvent, self.on_started)
         self.event_manager.subscribe(hikari.StoppingEvent, self.on_stopping)
-        self.load_extensions_from("./moomin/plugins")
+        self.load_extensions_from("./moomin/plugins", recursive=True)
 
         super().run()
 
