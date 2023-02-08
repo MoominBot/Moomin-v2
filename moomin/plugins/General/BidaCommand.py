@@ -1,15 +1,19 @@
 import time
 from datetime import datetime
+from typing import TYPE_CHECKING, cast
 
 import hikari
 import lightbulb
 
-from . import month_map
+from .. import month_map
 
-general = lightbulb.Plugin("General")
+if TYPE_CHECKING:
+    from moomin.core.bot import Moomin
+
+bida = lightbulb.Plugin("Bida")
 
 
-@general.command
+@bida.command
 @lightbulb.option(
     "month",
     "Month whose bida you want",
@@ -19,7 +23,8 @@ general = lightbulb.Plugin("General")
 @lightbulb.command("bida", "Show all the bidas of the current month", pass_options=True)
 @lightbulb.implements(lightbulb.SlashCommand)
 async def bida_command(ctx: lightbulb.Context, month: str):
-    data = await general.bot.bidas.get()
+    bot = cast("Moomin", bida.bot)
+    data = await bot.bidas.get()
     if not data:
         raise Exception("No bidas found!")
 
@@ -43,8 +48,8 @@ async def bida_command(ctx: lightbulb.Context, month: str):
 
 
 def load(bot: lightbulb.BotApp) -> None:
-    bot.add_plugin(general)
+    bot.add_plugin(bida)
 
 
 def unload(bot: lightbulb.BotApp) -> None:
-    bot.remove_plugin(general)
+    bot.remove_plugin(bida)
