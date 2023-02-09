@@ -33,7 +33,7 @@ class DatabaseManager:
         logger.info("Disconnected from the database!")
 
     async def migrate(self) -> None:
-        async with aiofiles.open("./migrations/migration.sql") as f:
+        async with aiofiles.open("./moomin/migrations/migration.sql") as f:
             await self.execute((await f.read()))
 
         logger.info("Database migrated successfully!")
