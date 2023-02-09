@@ -8,6 +8,22 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+class Bida(object):
+    def __init__(
+        self,
+        bs: str,
+        ad: str,
+        title: str,
+        bs_month: int,
+        *args,
+        **kwargs,
+    ):
+        self.bs = bs
+        self.ad = ad
+        self.title = title
+        self.bs_month = bs_month
+
+
 class BidaCache:
     def __init__(self, bot: "Moomin") -> None:
         self.bot = bot
@@ -18,13 +34,19 @@ class BidaCache:
             if resp.status == 200:
                 data = await resp.json()
 
-        await self.bot.redis_cache.set("bidas", pickle.dumps(data))
-        logger.info("[Redis - Bidas] Bidas cached successfully!")
+                # Setting the bidas in the cache by converting
+                # the json data into bytes
+                await self.bot.redis_cache.set("bidas", pickle.dumps(data))
+                logger.info("[Redis - Bidas] Bidas cached successfully!")
 
-        return data
+                return data
+            else:
+                raise Exception("Couldn't fetch data from the API")
 
     async def get(self):
         cache = await self.bot.redis_cache.get("bidas")
         if not cache:
             return None
-        return pickle.loads(cache)
+        # Unpickling the data from bytes to json
+        # and converting it to python objects
+        return [Bida(**data) for data in pickle.loads(cache)]
