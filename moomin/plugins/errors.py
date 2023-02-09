@@ -38,7 +38,9 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
             color=0xFF0000,
             description=_message + f"```\nError ID: {error_id}```",
         )
-        return await event.context.respond(embed=embed)
+        return await event.context.respond(
+            embed=embed, flags=hikari.MessageFlag.EPHEMERAL
+        )
 
     if isinstance(error, lightbulb.CommandIsOnCooldown):
         embed = hikari.Embed(
@@ -47,7 +49,9 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
             description=f"This command is on cooldown, please retry in {math.ceil(error.retry_after)}s."
             + f"```\nError ID: {error_id}```",
         )
-        return await event.context.respond(embed=embed)
+        return await event.context.respond(
+            embed=embed, flags=hikari.MessageFlag.EPHEMERAL
+        )
 
     if isinstance(error, lightbulb.NotEnoughArguments):
         return await event.bot.help_command.send_command_help(
@@ -70,7 +74,9 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
             color=0xFF0000,
             description=_message + f"```\nError ID: {error_id}```",
         )
-        return await event.context.respond(embed=embed)
+        return await event.context.respond(
+            embed=embed, flags=hikari.MessageFlag.EPHEMERAL
+        )
 
     title = " ".join(re.compile(r"[A-Z][a-z]*").findall(error.__class__.__name__))
     await event.context.respond(
@@ -78,7 +84,8 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
             title=title,
             description=str(error) + f"```\nError ID: {error_id}```",
             color=0xFF0000,
-        )
+        ),
+        flags=hikari.MessageFlag.EPHEMERAL,
     )
     raise error
 
