@@ -7,7 +7,7 @@ license = "GPL-3.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.12"
+python = ">=3.10,<3.12"
 hikari = "^2.0.0.dev116"
 asyncpg = "^0.27.0"
 aiofiles = "^22.1.0"

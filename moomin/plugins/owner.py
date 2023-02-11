@@ -20,6 +20,11 @@ owner.add_checks(lightbulb.owner_only)
 async def get_errors(ctx: lightbulb.Context) -> None:
     bot = cast("Moomin", owner.bot)
     data = await bot.db.fetch_all("SELECT * FROM errors")
+    if data is None:
+        return ctx.respond(
+            embed=hikari.Embed(description="No errors could be found!", color=0xFF0000),
+            flags=hikari.MessageFlag.EPHEMERAL,
+        )
 
     errors = [
         f"Error ID```\n{model.get('error_id')}```\n Error:```py\n{model.get('message')}```"
@@ -47,7 +52,11 @@ async def get_error(ctx: lightbulb.Context, error_id: str) -> None:
         )
     except Exception:
         return await ctx.respond(
-            "No Error with that specified ID found", flags=hikari.MessageFlag.EPHEMERAL
+            embed=hikari.Embed(
+                description="No Error with that specified ID found",
+                color=0xFF0000,
+            ),
+            flags=hikari.MessageFlag.EPHEMERAL,
         )
 
     embed = hikari.Embed(

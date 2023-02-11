@@ -23,7 +23,7 @@ class Moomin(lightbulb.BotApp):
             default_enabled_guilds=[842033877563605012],
         )
         self.db = DatabaseManager(Config.PSQL_DSN)
-        self.redis_cache = aioredis.Redis()
+        self.redis_cache = aioredis.Redis(host="redis")
         self.bidas = BidaCache(self)
 
     def start_moomin(self):
@@ -43,6 +43,7 @@ class Moomin(lightbulb.BotApp):
     async def on_started(self, _: hikari.StartedEvent) -> None:
         await self.db.migrate()
         await self.bidas.fetch()
+        await self.bidas.get()
 
     async def on_stopping(self, _: hikari.StoppingEvent) -> None:
         await self.db.close_connection()
