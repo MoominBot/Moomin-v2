@@ -12,3 +12,18 @@ month_map = {
     "फागुन": 11,
     "चैत": 12,
 }
+
+rashifal_map = {
+    "मेष": "Aries",
+    "वृष": "Taurus",
+    "मिथुन": "Gemini",
+    "कर्कट": "Cancer",
+    "सिंह": "Leo",
+    "कन्या": "Virgo",
+    "तुला": "Libra",
+    "वृश्चिक": "Scorpio",
+    "धनु": "Sagittarius",
+    "मकर": "Capricorn",
+    "कुम्भ": "Aquarius",
+    "मीन": "Pisces",
+}
