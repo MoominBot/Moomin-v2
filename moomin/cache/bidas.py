@@ -39,7 +39,7 @@ class BidaCache:
                 await self.bot.redis_cache.set("bidas", pickle.dumps(data))
                 logger.info("[Redis - Bidas] Bidas cached successfully!")
 
-                return data
+                return Bida(**data)
             else:
                 raise Exception("Couldn't fetch data from the API")
 
